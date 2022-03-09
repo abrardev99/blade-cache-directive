@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        laravel: [8, 9]
+        laravel: [8.*, 9.*]
         stability: [prefer-lowest, prefer-stable]
 
     name: L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: composer require "laravel/framework:^${{matrix.laravel}}.0"
+        run: composer require "laravel/framework:${{matrix.laravel}}"
 
       - name: Execute tests
         run: vendor/bin/phpunit
